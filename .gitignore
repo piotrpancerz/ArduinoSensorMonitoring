@@ -1,16 +1,8 @@
 # sbt
-# (may want to keep parts of 'project')
 bin/
 project/
 target/
 build/
-
-# eclipse
-build
-.classpath
-.project
-.settings
-.worksheet
 
 # intellij idea
 *.log
@@ -18,15 +10,3 @@ build
 *.ipr
 *.iws
 .idea
-
-# mac
-.DS_Store
-
-# other?
-.history
-.scala_dependencies
-.cache
-.cache-main
-
-#general
-*.class
