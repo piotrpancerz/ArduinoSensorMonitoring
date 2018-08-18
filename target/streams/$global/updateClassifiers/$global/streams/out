@@ -842,16 +842,16 @@
 [debug] == resolving dependencies default#arduinosensormonitoring$sources;0.1->org.scala-lang#scala-reflect;2.12.6 [scala-tool->master]
 [debug] 	resolved ivy file produced in cache
 [debug] :: downloading artifacts ::
-[debug] 	[NOT REQUIRED] org.scalafx#scalafx_2.12;8.0.144-R12!scalafx_2.12.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang#scala-library;2.12.6!scala-library.jar(src)
-[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
-[debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar(src)
-[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
-[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
+[debug] 	[NOT REQUIRED] org.scalafx#scalafx_2.12;8.0.144-R12!scalafx_2.12.jar(src)
 [debug] 	[NOT REQUIRED] org.scala-lang#scala-reflect;2.12.6!scala-reflect.jar(src)
 [debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
-[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.6!scala-compiler.jar(src)
+[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
 [debug] 	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(src)
+[debug] 	[NOT REQUIRED] jline#jline;2.14.6!jline.jar(src)
+[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
+[debug] 	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.6!scala-compiler.jar(src)
+[debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
 [debug] 	[NOT REQUIRED] com.fazecast#jSerialComm;2.2.0!jSerialComm.jar(src)
 [debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
 [debug] no default ivy user dir defined: set to C:\Users\Piter\.ivy2
@@ -863,49 +863,74 @@
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
 [debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (44ms)
-[debug] 	default cache: C:\Users\Piter\.ivy2\cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
-[debug] settings loaded (58ms)
-[debug] 	default cache: C:\Users\Piter\.ivy2\cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
+[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
+[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-public.xml
 [debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] no default cache defined: set to C:\Users\Piter\.ivy2\cache
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-shared.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] settings loaded (61ms)
+[debug] 	default cache: C:\Users\Piter\.ivy2\cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (68ms)
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
+[debug] settings loaded (69ms)
+[debug] 	default cache: C:\Users\Piter\.ivy2\cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
+[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
+[debug] settings loaded (85ms)
+[debug] 	default cache: C:\Users\Piter\.ivy2\cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
+[debug] settings loaded (79ms)
+[debug] 	default cache: C:\Users\Piter\.ivy2\cache
+[debug] 	default resolver: default
+[debug] 	-- 5 resolvers:
+[debug] 	shared [file]
+[debug] 	default [chain] [local, main]
+[debug] 	public [ibiblio]
+[debug] 	main [chain] [shared, public]
+[debug] 	local [file]
+[debug] settings loaded (76ms)
 [debug] 	default cache: C:\Users\Piter\.ivy2\cache
 [debug] 	default resolver: default
 [debug] 	-- 5 resolvers:
@@ -915,15 +940,9 @@
 [debug] 	main [chain] [shared, public]
 [debug] 	local [file]
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-local.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-main-chain.xml
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (92ms)
+[debug] settings loaded (96ms)
 [debug] 	default cache: C:\Users\Piter\.ivy2\cache
 [debug] 	default resolver: default
 [debug] 	-- 5 resolvers:
@@ -933,7 +952,7 @@
 [debug] 	main [chain] [shared, public]
 [debug] 	local [file]
 [debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (107ms)
+[debug] settings loaded (113ms)
 [debug] 	default cache: C:\Users\Piter\.ivy2\cache
 [debug] 	default resolver: default
 [debug] 	-- 5 resolvers:
@@ -942,26 +961,7 @@
 [debug] 	public [ibiblio]
 [debug] 	main [chain] [shared, public]
 [debug] 	local [file]
-[debug] including url: jar:file:/C:/Users/Piter/.sbt/boot/scala-2.12.6/org.scala-sbt/sbt/1.2.1/ivy-2.3.0-sbt-b18f59ea3bc914a297bb6f1a4f7fb0ace399e310.jar!/org/apache/ivy/core/settings/ivysettings-default-chain.xml
-[debug] settings loaded (112ms)
-[debug] 	default cache: C:\Users\Piter\.ivy2\cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
-[debug] settings loaded (107ms)
-[debug] 	default cache: C:\Users\Piter\.ivy2\cache
-[debug] 	default resolver: default
-[debug] 	-- 5 resolvers:
-[debug] 	shared [file]
-[debug] 	default [chain] [local, main]
-[debug] 	public [ibiblio]
-[debug] 	main [chain] [shared, public]
-[debug] 	local [file]
-[debug] :: resolution report :: resolve 467ms :: artifacts dl 130ms
+[debug] :: resolution report :: resolve 614ms :: artifacts dl 145ms
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 compile produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-compile.xml
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 runtime produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-runtime.xml
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 test produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-test.xml
@@ -973,4 +973,4 @@
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 plugin produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-plugin.xml
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 pom produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-pom.xml
 [debug] 	report for default#arduinosensormonitoring$sources;0.1 scala-tool produced in C:\Users\Piter\IdeaProjects\ArduinoSensorMonitoring\target\scala-2.12\resolution-cache\reports\default-arduinosensormonitoring$sources-scala-tool.xml
-[debug] 	resolve done (467ms resolve - 130ms download)
+[debug] 	resolve done (614ms resolve - 145ms download)

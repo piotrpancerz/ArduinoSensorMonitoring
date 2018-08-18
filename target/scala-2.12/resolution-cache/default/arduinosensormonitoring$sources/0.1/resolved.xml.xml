@@ -4,7 +4,7 @@
 		module="arduinosensormonitoring$sources"
 		revision="0.1"
 		status="integration"
-		publication="20180817222524"
+		publication="20180818115559"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

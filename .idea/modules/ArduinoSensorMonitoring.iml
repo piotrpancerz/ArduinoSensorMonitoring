@@ -14,8 +14,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sbt: com.fazecast:jSerialComm:2.2.0:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.6:jar" level="project" />
-    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.12.6:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scalafx:scalafx_2.12:8.0.144-R12:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-reflect:2.12.6:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.scala-lang:scala-library:2.12.6:jar" level="project" />
   </component>
 </module>
