@@ -10,7 +10,7 @@ import sensor._
 
 object Main extends JFXApp {
   stage = new JFXApp.PrimaryStage {
-    title = "Sensor Monitoring System"
+    title = "Arduino Sensor Monitoring"
     scene = new Scene(1200,500){
 
       /* Initialize sensors */
@@ -101,12 +101,12 @@ object Main extends JFXApp {
         }
         resetSliders(sliderLower, sliderUpper, textFieldLowerValue, textFieldUpperValue, comboBox.value.value.toString, sensors)
       }
-      sliderLower.value.onChange { (_, _, newValue) => {
-        adjustSliders(newValue.intValue(),sliderLower,sliderUpper,textFieldLowerValue,textFieldUpperValue,comboBox.value.value.toString,sensors)
-      }}
-      sliderUpper.value.onChange { (_, _, newValue) => {
-        adjustSliders(newValue.intValue(),sliderUpper,sliderLower,textFieldUpperValue,textFieldLowerValue,comboBox.value.value.toString,sensors)
-      }}
+      sliderLower.value.onChange {
+        adjustSliders(sliderLower, sliderUpper, "Lower", textFieldLowerValue, textFieldUpperValue, comboBox.value.value.toString, sensors)
+      }
+      sliderUpper.value.onChange {
+        adjustSliders(sliderLower, sliderUpper, "Upper", textFieldLowerValue, textFieldUpperValue, comboBox.value.value.toString, sensors)
+      }
 
       /* Show GUI window */
       content = List(button, comboBox, plot, sliderLower, sliderUpper, textFieldLowerInfo, textFieldUpperInfo, textFieldCurrentStateInfo, textFieldLowerValue, textFieldUpperValue)
@@ -138,12 +138,28 @@ object Main extends JFXApp {
     }
   }
   private def getActiveSensor(comboBoxValue: String, sensors: Vector[Sensor with Product with Serializable]): Option[Sensor] = sensors.find(_.name == comboBoxValue)
-  private def adjustSliders(newVal: Int, sliderChanged: Slider, sliderOther: Slider, textSliderChanged: TextField, textSliderOther: TextField, comboBoxValue: String, sensors: Vector[Sensor with Product with Serializable]): Unit ={
+  private def adjustSliders(sliderLower: Slider, sliderUpper: Slider, sliderChanged: String, textSliderLower: TextField, textSliderUpper: TextField, comboBoxValue: String, sensors: Vector[Sensor with Product with Serializable]): Unit ={
     getActiveSensor(comboBoxValue, sensors) match {
       case Some(s) =>
-        // TODO Filter values and reject unwanted
-        sliderChanged.value = newVal
-        textSliderChanged.text = s"${sliderChanged.value.value} ${s.unit}"
+        if(sliderLower.value.toInt + 1 > sliderUpper.value.toInt){
+          sliderChanged match {
+            case "Lower" => {
+              sliderLower.value = sliderLower.value.toInt
+              sliderUpper.value = sliderLower.value.toInt + 1
+            }
+            case "Upper" => {
+              sliderLower.value = sliderUpper.value.toInt - 1
+              sliderUpper.value = sliderUpper.value.toInt
+            }
+            case _ =>
+          }
+        } else {
+          sliderLower.value = sliderLower.value.toInt
+          sliderUpper.value = sliderUpper.value.toInt
+        }
+        textSliderLower.text = s"${sliderLower.value.value} ${s.unit}"
+        textSliderUpper.text = s"${sliderUpper.value.value} ${s.unit}"
+
       case None =>
     }
   }
