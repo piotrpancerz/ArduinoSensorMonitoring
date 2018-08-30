@@ -64,6 +64,7 @@ object Main extends JFXApp {
       textFieldLowerInfo.text = "Set lower limit"
       textFieldUpperInfo.text = "Set upper limit"
       textFieldCurrentStateInfo.text = "Press start"
+      textFieldCurrentStateInfo.setStyle("-fx-text-inner-color: black; -fx-font-weight:bold")
       resetSliders(sliderLower, sliderUpper, textFieldLowerValue, textFieldUpperValue, comboBox.value.value.toString, sensors)
 
       /* Define actions performed by the GUI elements */
@@ -85,7 +86,7 @@ object Main extends JFXApp {
           case _ =>
             button.text = "Start"
             setEnabled(comboBox,sliderLower,sliderUpper)
-            activeSensor.simStop(plot,textFieldCurrentStateInfo)
+            activeSensor.simStop(textFieldCurrentStateInfo)
         }
       }
       comboBox.onAction = (ae: ActionEvent) => {
@@ -143,14 +144,12 @@ object Main extends JFXApp {
       case Some(s) =>
         if(sliderLower.value.toInt + 1 > sliderUpper.value.toInt){
           sliderChanged match {
-            case "Lower" => {
+            case "Lower" =>
               sliderLower.value = sliderLower.value.toInt
               sliderUpper.value = sliderLower.value.toInt + 1
-            }
-            case "Upper" => {
+            case "Upper" =>
               sliderLower.value = sliderUpper.value.toInt - 1
               sliderUpper.value = sliderUpper.value.toInt
-            }
             case _ =>
           }
         } else {
@@ -159,7 +158,6 @@ object Main extends JFXApp {
         }
         textSliderLower.text = s"${sliderLower.value.value} ${s.unit}"
         textSliderUpper.text = s"${sliderUpper.value.value} ${s.unit}"
-
       case None =>
     }
   }
