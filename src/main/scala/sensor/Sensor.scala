@@ -4,6 +4,7 @@ import java.util.Scanner
 
 import scalafx.Includes._
 import com.fazecast.jSerialComm.SerialPort
+import scalafx.application.Platform
 import scalafx.scene.chart.XYChart._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.chart.{LineChart, XYChart}
@@ -22,9 +23,9 @@ abstract class Sensor {
   private val plotTitle = s"$name - Time Graph"
   private val yAxisLabel = s"$name ($unit})"
   private var _values: Seq[(Double,Double)] = Seq()
-  private var status =  "Test" -> "red"
-
-  def values = _values
+  private var _lowerRange: Seq[(Double,Double)] = Seq()
+  private var _upperRange: Seq[(Double,Double)] = Seq()
+  private var status =  "Connecting..." -> "black"
 
   def simStart(plot: LineChart[Number,Number], textFieldCurrentStateInfo: TextField, permittedRange: Array[Int] ): Unit = {
     port.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER,0,0)
@@ -35,17 +36,28 @@ abstract class Sensor {
           val scanner = new Scanner(port.getInputStream)
           while(scanner.hasNextLine) {
             updateValuesAndStatus(scanner,permittedRange)
-            // FIXME delete or comment
-//            println(_values)
-            // TODO update the plot or make values observable
-
-            // TODO add textField color background and text (perhaps a function to do so)
+            // FIXME update the plot
+            //              plot.data <== ObservableBuffer(parseSequenceToPlottable("Sensor output", activeSensor.values))
+            //              plot.getData.add(parseSequenceToPlottable("Sensor output", activeSensor.values))
+            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(0).toDouble)})))
+            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(1).toDouble)})))
+            //              plot.data = Seq(parseSequenceToPlottable("Sensor output", activeSensor.values), parseSequenceToPlottable("put", activeSensor.values))
+            //              plot.data = XYChart.Series[Number,Number]("Sensor output",ObservableBuffer(activeSensor.values.map{case (x,y) => XYChart.Data[Number,Number](x,y)}))
+            Platform.runLater(plot.data_=(parseSequenceToPlottable("Sensor output", _values)))
             textFieldCurrentStateInfo.text = status._1
-            textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold")
+            Platform.runLater(textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold"))
           }
           scanner.close()
         } catch {
-          case ex: Exception => if(!port.isOpen) println("Error = Port was unable to open!") else println("Error = Problem with scanning values from port!")
+          case ex: Exception => if(!port.isOpen) {
+            println("Error = Port was unable to open!")
+            textFieldCurrentStateInfo.text = "Connection error"
+            textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: red; -fx-font-weight: bold")
+          } else {
+            println("Error = Problem with scanning values from port!")
+            textFieldCurrentStateInfo.text = "Scanning error"
+            textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: red; -fx-font-weight: bold")
+          }
         }
       }
     }
@@ -59,21 +71,19 @@ abstract class Sensor {
       case ex: Exception => if(port.isOpen) println("Error = Port was unable to close!") else println("Error = Exception while closing port!")
     }
     textFieldCurrentStateInfo.text = "Simulation paused"
-    //FIXME Fix visible effect(no border)
-    textFieldCurrentStateInfo.setStyle("-fx-text-inner-color: black; -fx-font-weight:bold")
+    textFieldCurrentStateInfo.setStyle("-fx-text-inner-color: black; -fx-font-weight: bold")
   }
 
   protected def updateValuesAndStatus(scanner: Scanner, permittedRange: Array[Int]): Unit = {
     val pattern = raw"${this.name} = (\d+.?\d+), Time = (\d+.?\d+)".r
     val scannedLine = scanner.nextLine()
-    println(pattern)
-    println(scannedLine)
     scannedLine match {
       case pattern(value,time) => try {
-        println("good")
-        val newValue = Seq(math.rint(value.toDouble*100)/100 -> math.rint(time.toDouble*100)/100)
-        _values ++: newValue
-        if(newValue.head._1 >= permittedRange(0) && newValue.head._1 <= permittedRange(1)){
+        val newSeq = Seq(math.rint(value.toDouble*100)/100 -> math.rint(time.toDouble*100)/100)
+        _values = _values ++: newSeq
+        _lowerRange = _lowerRange ++: Seq(permittedRange(0) -> newSeq._2)
+        _upperRange = _upperRange ++: Seq(permittedRange(1) -> newSeq._2)
+        if(newSeq.head._1 >= permittedRange(0) && newSeq.head._1 <= permittedRange(1)){
           status =  "Value in range" -> "green"
         } else {
           status =  "Value out of range" -> "red"
@@ -87,9 +97,17 @@ abstract class Sensor {
     }
   }
 
-  def clearSequence(): Unit = this._values = Seq()
+  def clearSequence(): Unit = {
+    this._values = Seq()
+    this._lowerRange = Seq()
+    this._upperRange = Seq()
+  }
 
   def toMap: Map[String,String] = {
     Map("name" -> name, "unit" -> unit, "minVal" -> minVal.toString, "maxVal" -> maxVal.toString)
+  }
+
+  protected def parseSequenceToPlottable(name: String, seq: Seq[(Double,Double)]): XYChart.Series[Number, Number] = {
+    XYChart.Series[Number,Number](name, ObservableBuffer(seq.map{case (x,y) => XYChart.Data[Number,Number](x,y)}))
   }
 }

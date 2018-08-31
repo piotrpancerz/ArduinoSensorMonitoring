@@ -72,13 +72,6 @@ object Main extends JFXApp {
         val activeSensor = getActiveSensor(comboBox.value.value,sensors).get
         button.text.value match {
           case "Start" =>
-            // TODO Make values observable and update the plot or try to update the plot with different approach
-            //              plot.data <== ObservableBuffer(parseSequenceToPlottable("Sensor output", activeSensor.values))
-            //              plot.getData.add(parseSequenceToPlottable("Sensor output", activeSensor.values))
-            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(0).toDouble)})))
-            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(1).toDouble)})))
-            //              plot.data = Seq(parseSequenceToPlottable("Sensor output", activeSensor.values), parseSequenceToPlottable("put", activeSensor.values))
-            //              plot.data = XYChart.Series[Number,Number]("Sensor output",ObservableBuffer(activeSensor.values.map{case (x,y) => XYChart.Data[Number,Number](x,y)}))
             textFieldCurrentStateInfo.text = "Connecting..."
             button.text = "Stop"
             setDisabled(comboBox,sliderLower,sliderUpper)
@@ -160,8 +153,5 @@ object Main extends JFXApp {
         textSliderUpper.text = s"${sliderUpper.value.value} ${s.unit}"
       case None =>
     }
-  }
-  protected def parseSequenceToPlottable(name: String, seq: Seq[(Double,Double)]): XYChart.Series[Number, Number] = {
-    XYChart.Series[Number,Number](name, ObservableBuffer(seq.map{case (x,y) => XYChart.Data[Number,Number](x,y)}))
   }
 }
