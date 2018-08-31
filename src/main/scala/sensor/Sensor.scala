@@ -23,8 +23,6 @@ abstract class Sensor {
   private val plotTitle = s"$name - Time Graph"
   private val yAxisLabel = s"$name ($unit})"
   private var _values: Seq[(Double,Double)] = Seq()
-  private var _lowerRange: Seq[(Double,Double)] = Seq()
-  private var _upperRange: Seq[(Double,Double)] = Seq()
   private var status =  "Connecting..." -> "black"
 
   def simStart(plot: LineChart[Number,Number], textFieldCurrentStateInfo: TextField, permittedRange: Array[Int] ): Unit = {
@@ -36,14 +34,9 @@ abstract class Sensor {
           val scanner = new Scanner(port.getInputStream)
           while(scanner.hasNextLine) {
             updateValuesAndStatus(scanner,permittedRange)
-            // FIXME update the plot
-            //              plot.data <== ObservableBuffer(parseSequenceToPlottable("Sensor output", activeSensor.values))
-            //              plot.getData.add(parseSequenceToPlottable("Sensor output", activeSensor.values))
-            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(0).toDouble)})))
-            //              plot.getData.add(parseSequenceToPlottable(activeSensor.values.map({case(x,y) => (x,permittedRange(1).toDouble)})))
-            //              plot.data = Seq(parseSequenceToPlottable("Sensor output", activeSensor.values), parseSequenceToPlottable("put", activeSensor.values))
-            //              plot.data = XYChart.Series[Number,Number]("Sensor output",ObservableBuffer(activeSensor.values.map{case (x,y) => XYChart.Data[Number,Number](x,y)}))
-            Platform.runLater(plot.data_=(parseSequenceToPlottable("Sensor output", _values)))
+            Platform.runLater({
+              plot.data_=(parseSequenceToPlottable("Sensor output", _values))
+            })
             textFieldCurrentStateInfo.text = status._1
             Platform.runLater(textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold"))
           }
@@ -64,7 +57,7 @@ abstract class Sensor {
     thread.start()
   }
 
-  def simStop(textFieldCurrentStateInfo: TextField): Unit = {
+  def simStop(plot: LineChart[Number,Number], textFieldCurrentStateInfo: TextField): Unit = {
     try {
       port.closePort()
     } catch {
@@ -72,6 +65,8 @@ abstract class Sensor {
     }
     textFieldCurrentStateInfo.text = "Simulation paused"
     textFieldCurrentStateInfo.setStyle("-fx-text-inner-color: black; -fx-font-weight: bold")
+    clearSequence()
+    plot.getData.clear()
   }
 
   protected def updateValuesAndStatus(scanner: Scanner, permittedRange: Array[Int]): Unit = {
@@ -81,8 +76,6 @@ abstract class Sensor {
       case pattern(value,time) => try {
         val newSeq = Seq(math.rint(value.toDouble*100)/100 -> math.rint(time.toDouble*100)/100)
         _values = _values ++: newSeq
-        _lowerRange = _lowerRange ++: Seq(permittedRange(0) -> newSeq._2)
-        _upperRange = _upperRange ++: Seq(permittedRange(1) -> newSeq._2)
         if(newSeq.head._1 >= permittedRange(0) && newSeq.head._1 <= permittedRange(1)){
           status =  "Value in range" -> "green"
         } else {
@@ -99,8 +92,6 @@ abstract class Sensor {
 
   def clearSequence(): Unit = {
     this._values = Seq()
-    this._lowerRange = Seq()
-    this._upperRange = Seq()
   }
 
   def toMap: Map[String,String] = {

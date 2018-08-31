@@ -79,7 +79,7 @@ object Main extends JFXApp {
           case _ =>
             button.text = "Start"
             setEnabled(comboBox,sliderLower,sliderUpper)
-            activeSensor.simStop(textFieldCurrentStateInfo)
+            activeSensor.simStop(plot,textFieldCurrentStateInfo)
         }
       }
       comboBox.onAction = (ae: ActionEvent) => {
