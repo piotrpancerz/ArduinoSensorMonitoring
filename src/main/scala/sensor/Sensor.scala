@@ -76,7 +76,7 @@ abstract class Sensor {
       case pattern(value,time) => try {
         val newSeq = Seq(math.rint(time.toDouble*100)/100 -> math.rint(value.toDouble*100)/100)
         _values = _values ++: newSeq
-        if(newSeq.head._1 >= permittedRange(0) && newSeq.head._1 <= permittedRange(1)){
+        if(newSeq.head._2 >= permittedRange(0) && newSeq.head._2 <= permittedRange(1)){
           status =  "Value in range" -> "green"
         } else {
           status =  "Value out of range" -> "red"
