@@ -9,9 +9,6 @@ import scalafx.scene.chart.XYChart._
 import scalafx.collections.ObservableBuffer
 import scalafx.scene.chart.{LineChart, XYChart}
 import scalafx.scene.control.TextField
-import scalafx.scene.paint.Color
-
-import scala.collection.mutable
 
 abstract class Sensor {
   val name: String
@@ -75,7 +72,10 @@ abstract class Sensor {
     scannedLine match {
       case pattern(value,time) => try {
         val newSeq = Seq(math.rint(time.toDouble*100)/100 -> math.rint(value.toDouble*100)/100)
+
+        if(_values.length >= 10) _values = _values.drop(1)
         _values = _values ++: newSeq
+
         if(newSeq.head._2 >= permittedRange(0) && newSeq.head._2 <= permittedRange(1)){
           status =  "Value in range" -> "green"
         } else {

@@ -61,6 +61,7 @@ object Main extends JFXApp {
       yAxis.lowerBound = 0
       yAxis.upperBound = 100
       plot.title = s"${sensors.head.name} - Time Graph"
+      plot.legendVisible = false
       textFieldLowerInfo.text = "Set lower limit"
       textFieldUpperInfo.text = "Set upper limit"
       textFieldCurrentStateInfo.text = "Press start"
