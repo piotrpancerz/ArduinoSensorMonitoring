@@ -7,7 +7,7 @@ import com.fazecast.jSerialComm.SerialPort
 import scalafx.application.Platform
 import scalafx.scene.chart.XYChart._
 import scalafx.collections.ObservableBuffer
-import scalafx.scene.chart.{LineChart, XYChart}
+import scalafx.scene.chart.{LineChart, NumberAxis, XYChart}
 import scalafx.scene.control.TextField
 
 abstract class Sensor {
@@ -19,10 +19,11 @@ abstract class Sensor {
   val port: SerialPort = SerialPort.getCommPort(portName)
   private val plotTitle = s"$name - Time Graph"
   private val yAxisLabel = s"$name ($unit})"
-  private var _values: Seq[(Double,Double)] = Seq()
+  private var _values: Seq[Double] = Seq()
+  private var _timestamps: Seq[Double] = Seq()
   private var status =  "Connecting..." -> "black"
 
-  def simStart(plot: LineChart[Number,Number], textFieldCurrentStateInfo: TextField, permittedRange: Array[Int] ): Unit = {
+  def simStart(xAxis: NumberAxis, yAxis: NumberAxis, plot: LineChart[Number,Number], textFieldCurrentStateInfo: TextField, permittedRange: Array[Int] ): Unit = {
     port.setComPortTimeouts(SerialPort.TIMEOUT_SCANNER,0,0)
     port.openPort(1000)
     val thread = new Thread(){
@@ -32,8 +33,15 @@ abstract class Sensor {
           while(scanner.hasNextLine) {
             updateValuesAndStatus(scanner,permittedRange)
             Platform.runLater({
-              plot.data_=(parseSequenceToPlottable("Sensor output", _values))
-              println(plot.XAxis)
+              plot.data_=(parseSequenceToPlottable("Sensor output", _timestamps.zip(_values)))
+              if(_values.nonEmpty && _timestamps.nonEmpty){
+                xAxis.lowerBound = math.floor(_timestamps.head)
+                xAxis.upperBound = math.ceil(_timestamps.last)
+                xAxis.tickUnit = 1
+                yAxis.lowerBound = math.floor(_values.min-1)
+                yAxis.upperBound = math.ceil(_values.max+1)
+                yAxis.tickUnit = 1
+              }
               textFieldCurrentStateInfo.text = status._1
               textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold")
             })
@@ -72,12 +80,17 @@ abstract class Sensor {
     val scannedLine = scanner.nextLine()
     scannedLine match {
       case pattern(value,time) => try {
-        val newSeq = Seq(math.rint(time.toDouble*100)/100 -> math.rint(value.toDouble*100)/100)
+        val newValue = math.rint(value.toDouble*100)/100
+        val newTimestamp = math.rint(time.toDouble*100)/100
 
-        if(_values.length >= 10) _values = _values.drop(1)
-        _values = _values ++: newSeq
+        if(_values.length >= 10){
+          _values = _values.drop(1)
+          _timestamps = _timestamps.drop(1)
+        }
+        _values = _values ++: Seq(newValue)
+        _timestamps = _timestamps ++: Seq(newTimestamp)
 
-        if(newSeq.head._2 >= permittedRange(0) && newSeq.head._2 <= permittedRange(1)){
+        if(_values.head >= permittedRange(0) && _values.head <= permittedRange(1)){
           status =  "Value in range" -> "green"
         } else {
           status =  "Value out of range" -> "red"
@@ -93,6 +106,7 @@ abstract class Sensor {
 
   def clearSequence(): Unit = {
     this._values = Seq()
+    this._timestamps = Seq()
   }
 
   def toMap: Map[String,String] = {

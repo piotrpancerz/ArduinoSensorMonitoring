@@ -61,6 +61,8 @@ object Main extends JFXApp {
       yAxis.upperBound = 100
       plot.title = s"${sensors.head.name} - Time Graph"
       plot.legendVisible = false
+      xAxis.autoRanging = false
+      yAxis.autoRanging = false
       textFieldLowerInfo.text = "Set lower limit"
       textFieldUpperInfo.text = "Set upper limit"
       textFieldCurrentStateInfo.text = "Press start"
@@ -75,7 +77,7 @@ object Main extends JFXApp {
             textFieldCurrentStateInfo.text = "Connecting..."
             button.text = "Stop"
             setDisabled(comboBox,sliderLower,sliderUpper)
-            activeSensor.simStart(plot,textFieldCurrentStateInfo,Array(sliderLower.value.toInt,sliderUpper.value.toInt))
+            activeSensor.simStart(xAxis,yAxis,plot,textFieldCurrentStateInfo,Array(sliderLower.value.toInt,sliderUpper.value.toInt))
           case _ =>
             button.text = "Start"
             setEnabled(comboBox,sliderLower,sliderUpper)
