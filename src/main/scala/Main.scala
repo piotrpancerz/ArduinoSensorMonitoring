@@ -1,9 +1,8 @@
 import scalafx.Includes._
 import scalafx.application.JFXApp
-import scalafx.collections.ObservableBuffer
 import scalafx.event.ActionEvent
 import scalafx.scene.Scene
-import scalafx.scene.chart.{LineChart, NumberAxis, XYChart}
+import scalafx.scene.chart.{LineChart, NumberAxis}
 import scalafx.scene.control._
 import scalafx.scene.layout.Region
 import sensor._

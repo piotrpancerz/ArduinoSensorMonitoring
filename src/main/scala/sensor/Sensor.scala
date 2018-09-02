@@ -33,9 +33,10 @@ abstract class Sensor {
             updateValuesAndStatus(scanner,permittedRange)
             Platform.runLater({
               plot.data_=(parseSequenceToPlottable("Sensor output", _values))
+              println(plot.XAxis)
+              textFieldCurrentStateInfo.text = status._1
+              textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold")
             })
-            textFieldCurrentStateInfo.text = status._1
-            Platform.runLater(textFieldCurrentStateInfo.setStyle(s"-fx-text-inner-color: ${status._2}; -fx-font-weight: bold"))
           }
           scanner.close()
         } catch {
